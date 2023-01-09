@@ -4,7 +4,7 @@ echo "NWS Deployment scripts already exist in this repo!"
 echo "Continuing with this script will overwrite those scripts"
 echo "---"
 fi
-
+echo "Using deployment stragegy $1"
 read -p "Enter the name of your main branch [main]: " branchname  <&1
 if [ -z "$branchname"]
 then
@@ -19,7 +19,7 @@ mkdir .github 2>&1
 mkdir .github/workflows 2>&1
 touch .github/workflows/nws-deploy.yaml 2>&1
 
-wget -O .github/workflows/nws-deploy.yaml https://raw.githubusercontent.com/nickorlow/nws-ghactions-templates/main/rawhtml.yaml
+wget -O .github/workflows/nws-deploy.yaml https://raw.githubusercontent.com/nickorlow/nws-ghactions-templates/main/$1.yaml
 sed -i 's/{{_main_branchname_}}/$branchname/' .github/workflows/nws-deploy.yaml
 git add .github/workflows/nws-deploy.yaml 2>&1
 git commit -am "Added NWS deployment script" 2>&1
