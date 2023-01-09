@@ -11,8 +11,11 @@ read -p "Enter the name of your main branch [main]: " branchname
 branchname=${branchname:-main}
 
 git checkout $branchname
+
 mkdir .github
-mkdir workflows
+mkdir .github/workflows
+touch .github/workflows/nws-deploy.yaml
+
 wget -O .github/workflows/nws-deploy.yaml https://raw.githubusercontent.com/nickorlow/nws-ghactions-templates/main/rawhtml.yaml
 sed -i 's/{{_main_branchname_}}/$branchname/' .github/workflows/nws-deploy.yaml
 git add .github/workflows/nws-deploy.yaml
