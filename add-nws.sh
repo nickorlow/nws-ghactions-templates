@@ -6,7 +6,7 @@ echo "---"
 fi
 echo "Using deployment stragegy $1"
 read -p "Enter the name of your main branch [main]: " branchname  <&1
-if [ -z "$branchname"]
+if [ -z "$branchname" ]
 then
 $branchname="main"
 fi
@@ -23,11 +23,11 @@ git add .github/workflows/nws-deploy.yaml 2>&1
 git commit -am "Added NWS deployment script" 2>&1
 
 if git push 2>&1; then
+echo "Welcome to NWS!"
 else
 echo "Pushing git repo failed! (Is there a merge conflict?)"
 fi
 
-echo "Welcome to NWS!"
 else
 echo "Branch $branchname doesn't exist!"
 fi
