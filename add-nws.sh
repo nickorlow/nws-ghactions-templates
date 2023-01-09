@@ -7,6 +7,7 @@ fi
 
 read -p "Enter the name of your main branch [main]: " branchname  <&1
 if [ -z "$branchname"]
+then
 $branchname=main
 fi
 git checkout $branchname
