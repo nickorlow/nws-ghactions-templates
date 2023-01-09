@@ -1,4 +1,4 @@
-if [ -f ".github/workflows/nws-deploy.yaml" ]; 
+if [ -f ".github/workflows/nws-deploy.yaml" ]
 then
 
 # if file exist the it will be printed 
