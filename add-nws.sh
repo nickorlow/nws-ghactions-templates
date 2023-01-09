@@ -8,18 +8,29 @@ fi
 read -p "Enter the name of your main branch [main]: " branchname  <&1
 if [ -z "$branchname"]
 then
-$branchname=main
+$branchname="main"
 fi
-git checkout $branchname
 
-mkdir .github
-mkdir .github/workflows
-touch .github/workflows/nws-deploy.yaml
+if
+git checkout $branchname 2>&1
+then
+
+mkdir .github 2>&1
+mkdir .github/workflows 2>&1
+touch .github/workflows/nws-deploy.yaml 2>&1
 
 wget -O .github/workflows/nws-deploy.yaml https://raw.githubusercontent.com/nickorlow/nws-ghactions-templates/main/rawhtml.yaml
 sed -i 's/{{_main_branchname_}}/$branchname/' .github/workflows/nws-deploy.yaml
-git add .github/workflows/nws-deploy.yaml
-git commit -am "Added NWS deployment script"
-git push
+git add .github/workflows/nws-deploy.yaml 2>&1
+git commit -am "Added NWS deployment script" 2>&1
+
+if git push 2>&1
+then
+else
+echo "Pushing git repo failed! (Is there a merge conflict?)"
+fi
 
 echo "Welcome to NWS!"
+else
+echo "Branch $branchname doesn't exist!"
+fi
