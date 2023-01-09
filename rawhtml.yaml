@@ -1,5 +1,5 @@
 name: NWS Publish Raw HTML
-description: Publishes a repo that contains raw HTML (with an index.json) to NWS! 
+description: Publishes a repo that contains raw HTML (with an index.json) to NWS! (Also publishes a docker image with an auto-generated semver)
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
@@ -7,9 +7,7 @@ env:
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: [ "{{_main_branchname_}}" ]
   workflow_dispatch:
 
 jobs:
