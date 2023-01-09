@@ -1,3 +1,9 @@
+$orig_dir=pwd
+$cur_dir=mktemp
+cd $cur_dir
+
+git clone $2 .
+
 if [ -f ".github/workflows/nws-deploy.yaml" ]
 then
 echo "NWS Deployment scripts already exist in this repo!"
@@ -31,3 +37,6 @@ fi
 else
 echo "Branch $branchname doesn't exist!"
 fi
+
+cd $orig_dir
+rm -rf $cur_dir
