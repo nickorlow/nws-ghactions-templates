@@ -4,9 +4,8 @@ then
 # if file exist the it will be printed 
 echo "NWS Deployment scripts already exist in this repo!"
 echo "Continuing with this script will overwrite those scripts"
-echo "---"
-echo
-else
+echo "---\n\n"
+fi
 
 read -p "Enter the name of your main branch [main]: " branchname
 branchname=${branchname:-main}
@@ -20,4 +19,4 @@ git add .github/workflows/nws-deploy.yaml
 git commit -am "Added NWS deployment script"
 git push
 
-echo "Welcome to NWS!"
+echo "\n\nWelcome to NWS!\n"
