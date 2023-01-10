@@ -2,13 +2,10 @@ orig_dir=`pwd`
 cur_dir=`mktemp -d`
 
 cd $cur_dir
-echo '
-  _  _  __      __ ___   \n \| \\\| \| \\ \\    / // __\|  \n \| .\` \|  \\ \\/\\/ / \\__ \\  \n \|_\|\\_\|   \\_/\\_/  \|___/  \n_\|\"\"\"\"\"\|_\|\"\"\"\"\"\|_\|\"\"\"\"\"\| \n\"\`-0-0-\'\"\`-0-0-\'\"\`-0-0-\' \n\n
-Deployment Helper
+echo "
+NWS Deployment Helper
 ---
-
-
-'
+"
 
 echo "cloning github.com:$2/$3..."
 git clone --quiet git@github.com:$2/$3.git . > /dev/null 2>&1
