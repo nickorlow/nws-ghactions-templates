@@ -3,7 +3,7 @@ cur_dir=`mktemp -d`
 
 cd $cur_dir
 
-git clone --quiet https://github.com/$2/$3 . > /dev/null 2>&1
+git clone --quiet git@github.com:$2/$3.git . > /dev/null 2>&1
 
 if [ -f ".github/workflows/nws-deploy.yaml" ]
 then
@@ -31,7 +31,7 @@ sed -i .bak  "s/{{_main_branchname_}}/$branchname/g" .github/workflows/nws-deplo
 git add .github/workflows/nws-deploy.yaml > /dev/null 2>&1
 git commit -am "Added NWS deployment script" > /dev/null 2>&1
 
-if git push; then
+if git push > /dev/null 2>&1; then
 echo "Welcome to NWS!"
 else
 echo "Pushing git repo failed! (Is there a merge conflict?)"
