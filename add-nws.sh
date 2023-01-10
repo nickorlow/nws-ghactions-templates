@@ -47,7 +47,7 @@ rm -rf $cur_dir
 i=0
 x=0
 echo "Waiting for build to finish (this may take a while!)..."
-while curl -s -N https://ghcr.io/token\?scope\="repository:$2/$3:pull" | grep -q 'invalid'
+while curl -s -N https://ghcr.io/token\?scope\="repository:$2/$3:pull" | grep -q 'error'
 do
   if [[ "$i" -eq 3 ]]
   then
