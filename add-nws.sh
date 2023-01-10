@@ -31,7 +31,7 @@ sed -i .bak  "s/{{_main_branchname_}}/$branchname/g" .github/workflows/nws-deplo
 git add .github/workflows/nws-deploy.yaml > /dev/null 2>&1
 git commit -am "Added NWS deployment script" > /dev/null 2>&1
 
-if git push > /dev/null 2>&1; then
+if git push; then
 echo "Welcome to NWS!"
 else
 echo "Pushing git repo failed! (Is there a merge conflict?)"
