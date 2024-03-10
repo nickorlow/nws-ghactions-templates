@@ -33,7 +33,7 @@ mkdir .github/workflows > /dev/null 2>&1
 touch .github/workflows/nws-deploy.yaml > /dev/null 2>&1
 
 wget -O .github/workflows/nws-deploy.yaml https://raw.githubusercontent.com/nickorlow/nws-ghactions-templates/main/$1.yaml > /dev/null 2>&1
-sed -i .bak  "s/{{_main_branchname_}}/$branchname/g" .github/workflows/nws-deploy.yaml
+sed "s/{{_main_branchname_}}/$branchname/g" .github/workflows/nws-deploy.yaml
 git add .github/workflows/nws-deploy.yaml > /dev/null 2>&1
 git commit -am "Added NWS deployment script" > /dev/null 2>&1
 
@@ -50,28 +50,19 @@ fi
 cd $orig_dir
 rm -rf $cur_dir
 
-i=0
-x=0
+spin[0]="-"
+spin[1]="\\"
+spin[2]="|"
+spin[3]="/"
+
 echo -n "Waiting for build to finish (this may take a while!)"
 while [[ `curl -s -N https://ghcr.io/token\?scope\="repository:$2/$3:pull"` == *"error"* ]]; 
 do
-  if [[ "$i" -eq 3 ]]
-  then
-    printf "\r\r\r"
-    printf "   "
-    printf "\r\r\r"
-    i=0
-  else
-    printf "."
-    i=$((i+1))
-  fi
-  if [[ "$x" -eq 1000 ]]
-  then
-    echo "Build timed out!"
-    exit
-  fi
-  sleep 1
-  x=$((x+1))
+  for i in "${spin[@]}"
+  do
+        echo -ne "\b$i"
+        sleep 0.1
+  done
 done
 
 echo "Welcome to NWS!"
