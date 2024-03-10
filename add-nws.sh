@@ -57,11 +57,11 @@ spin[3]="/"
 
 echo -n "Waiting for build to finish (this may take a while!)  "
 i=0
-while [[ `curl -s -N https://ghcr.io/token\?scope\="repository:$2/$3:pull"` == *"error"* ]]; 
+while [[ `curl -s -N "https://github.com/nickorlow/test-nws/pkgs/$1/$2"` == "NotFound" ]]; 
 do
-        echo -ne "\b$spin[$i]"
+        echo -ne "\b${spin[i]}"
         ((i = (i + 1) % 4)) 
 done
-
+echo ""
 echo "Welcome to NWS!"
-
+echo "Godspeed."
