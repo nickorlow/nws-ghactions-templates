@@ -3,7 +3,7 @@ cur_dir=`mktemp -d`
 
 cd $cur_dir
 echo "
-NWS Deployment Helper
+NWS Deployment Helper v1.0.0
 ---
 "
 
