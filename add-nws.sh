@@ -55,9 +55,17 @@ spin[1]="\\"
 spin[2]="|"
 spin[3]="/"
 
+
+echo "!!!! USER ACTION REQUIRED !!!"
+echo "After a minute, navigate to the below link and change package visibility to public or else this script will fail!"
+echo "https://github.com/$2/$3/pkgs/container/$3"
+echo "!!!! USER ACTION REQUIRED !!!"
+echo ""
+echo ""
+
 echo -n "Waiting for build to finish (this may take a while!)  "
 i=0
-while [[ `curl -s -N "https://github.com/nickorlow/test-nws/pkgs/$1/$2"` == "NotFound" ]]; 
+while [[ `curl -s -N "https://github.com/$2/$3/pkgs/container/$3"` == *"Not Found"* ]]; 
 do
         echo -ne "\b${spin[i]}"
         ((i = (i + 1) % 4)) 
